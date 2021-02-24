@@ -1,8 +1,20 @@
 export interface Post {
-  id: string;
+  source: {
+    id: string;
+    name: string;
+  };
   author: string;
   title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
   content: string;
-  img?: string;
-  likes: number;
+  likes?: 0;
+}
+
+export interface Resonse {
+  status: string;
+  totalResult: number;
+  articles: Post[];
 }

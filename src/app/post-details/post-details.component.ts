@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PostService } from '../post.service';
 import { Post } from '../shared/post';
 import { map } from 'rxjs/operators';
-import { postList } from '../shared/post-list';
+//import { postList } from '../shared/post-list';
 
 @Component({
   selector: 'app-post-details',

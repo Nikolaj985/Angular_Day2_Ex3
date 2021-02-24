@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject } from 'Angular_Day2_Ex2/node_modules/rxjs';
+import { Observable, Subject } from 'rxjs';
 import { PostService } from '../post.service';
 import { Post } from '../shared/post';
 import { takeUntil } from 'rxjs/operators';

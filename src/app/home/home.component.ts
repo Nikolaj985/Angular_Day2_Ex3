@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostService } from '../post.service';
-import { Post } from '../shared/post';
-import { postList } from '../shared/post-list';
-import { map } from 'rxjs/operators';
+import { Post, Resonse } from '../shared/post';
+//import { postList } from '../shared/post-list';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +11,28 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  pspas: Observable<Response>;
   posts: Post[];
   post$: Observable<Post[]>;
+  showLoader: boolean;
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.post$ = this.postService.loadPosts().pipe(
       map((posts) => {
-        return posts.filter((post) => {
-          return !!post.img;
-        });
+        return posts
+          .filter((post) => {
+            return !!post.urlToImage;
+          })
+          .map((post) => {
+            if (post.content !== null) {
+              post.content = post.content.slice(0, 97) + '...';
+            }
+            return post;
+          });
       })
     );
+    this.showLoader = false;
   }
 }

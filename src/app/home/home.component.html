@@ -1,3 +1,8 @@
-<div class="row" *ngFor="let post of post$ | async">
-  <app-post class="col-12 col-md-6" [post]="post"></app-post>
+<div *ngIf="post$ | async as posts; else loading">
+  <div class="row" *ngFor="let post of posts">
+    <app-post class="col-12 col-md-6" [post]="post"></app-post>
+  </div>
 </div>
+<ng-template #loading>
+  <h1>Loading......</h1>
+</ng-template>
