@@ -24,20 +24,27 @@ export class PostService implements OnInit {
   loadPosts(): Observable<Post[]> {
     return this.httpClient.get(this.apiEndpoint).pipe(
       map((data: Resonse) => {
-        console.log(data.articles);
-        return data.articles;
+        return data.sources;
       })
     );
   }
-  getPost(id) {
-    return this.httpClient.get<Post>(`/api/posts/${id}`);
+  getPost(id): Observable<Post> {
+    return this.httpClient.get(this.apiEndpoint).pipe(
+      map((data: Resonse) => {
+        return data.sources.find((post) => {
+          if (post.id == id) {
+            return post;
+          }
+        });
+      })
+    );
   }
   addLike(post: Post) {
     post.likes++;
-    return this.httpClient.put('/api/posts/' + post.source.id, post);
+    return this.httpClient.put('/api/posts/' + post.id, post);
   }
   removeLike(post: Post) {
     post.likes--;
-    return this.httpClient.put('/api/posts/' + post.source.id, post);
+    return this.httpClient.put('/api/posts/' + post.id, post);
   }
 }

@@ -21,16 +21,12 @@ export class HomeComponent implements OnInit {
     this.showLoader = true;
     this.post$ = this.postService.loadPosts().pipe(
       map((posts) => {
-        return posts
-          .filter((post) => {
-            return !!post.urlToImage;
-          })
-          .map((post) => {
-            if (post.content !== null) {
-              post.content = post.content.slice(0, 97) + '...';
-            }
-            return post;
-          });
+        return posts.map((post) => {
+          if (post.description !== null) {
+            post.description = post.description.slice(0, 97) + '...';
+          }
+          return post;
+        });
       })
     );
     this.showLoader = false;

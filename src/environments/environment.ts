@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl:
-    'http://newsapi.org/v2/everything?q=angular&from=2021-02-21&to=2021-02-21&sortBy=popularity&apiKey=fa44b9ecee9e4d73910268770d44fbed',
+    'http://newsapi.org/v2/sources?q=angular&from=2021-02-21&to=2021-02-21&sortBy=popularity&apiKey=fa44b9ecee9e4d73910268770d44fbed',
 };
 
 /*
